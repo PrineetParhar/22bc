@@ -1,0 +1,21 @@
+@keyframes hover-animation {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-5%, -5%);
+  }
+  50% {
+    transform: translate(5%, 5%);
+  }
+  75% {
+    transform: translate(-5%, 5%);
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(270deg, #a2c2e8, #f9f9f9, #f9f9f9, #a2c2e8);
+  background-size: 400% 400%;
+  animation: hover-animation 5s ease infinite;
+}

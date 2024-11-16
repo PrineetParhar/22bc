@@ -1,7 +1,17 @@
 import "./App.css";
+import Navbar from "./components/Navbar";
+import MainForm from "./pages/MainForm";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-  return <p className="text-3xl font-bold underline">Hello world</p>;
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<MainForm />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
