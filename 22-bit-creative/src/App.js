@@ -9,6 +9,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<MainForm />} />
+        {/* <Route path="/sign-up" element={<SignUp/>}/> */}
       </Routes>
     </BrowserRouter>
   );
