@@ -1,0 +1,105 @@
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2e2ead;
+    font-size: 18px; /* Adjust the default body font size */
+}
+
+/* Navbar styling */
+nav {
+    background-color: #333;
+    color: white;
+    padding: 20px; /* Increased padding for a larger navbar */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav ul li {
+    margin-right: 25px; /* Increased spacing between nav items */
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 22px; /* Larger font size for links */
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Form and container styling */
+.signup-container,
+.main-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 40px; /* Increased padding for the form */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 36px; /* Larger font size for the main heading */
+    text-align: center;
+}
+
+h2 {
+    font-size: 32px; /* Larger font size for subheadings */
+    text-align: center;
+    color: #2DC9F8;
+}
+
+h3 {
+    font-size: 28px; /* If you have other headings, you can adjust similarly */
+    text-align: center;
+    color: #2DC9F8;
+}
+
+.form-group {
+    margin-bottom: 20px; /* Increased margin for better spacing */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 24px; /* Increased font size for labels */
+}
+
+input {
+    width: 100%;
+    padding: 15px; /* Increased padding for a larger input */
+    margin-bottom: 20px; /* Increased margin */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 18px; /* Larger font size for input text */
+}
+
+button {
+    padding: 15px 30px; /* Larger button with more padding */
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px; /* Larger font size for button text */
+}
+
+button:hover {
+    background-color: #555;
+}
+
+p {
+    margin-top: 30px; /* Increased margin */
+    font-size: 20px; /* Larger font size for messages */
+    color: green;
+    text-align: center;
+}
