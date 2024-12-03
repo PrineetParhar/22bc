@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
 
 function MainForm() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -214,21 +215,45 @@ function MainForm() {
             <form onSubmit={handleSubmit}>
               {/* Form Step */}
               <div className="mb-6">
-                <label className="block text-lg font-medium mb-2">
+                <label className="block text-lg font-medium mb-4">
                   {questions[currentStep].question}
                 </label>
 
-                <input
-                  type={questions[currentStep].type}
-                  name={questions[currentStep].placeholder.toLowerCase()}
-                  placeholder={questions[currentStep].placeholder}
-                  value={
-                    formData[questions[currentStep].placeholder.toLowerCase()]
-                  }
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
+                {questions[currentStep].type === "text" && (
+                  <input
+                    type="text"
+                    name={questions[currentStep].placeholder.toLowerCase()}
+                    placeholder={questions[currentStep].placeholder}
+                    value={
+                      formData[questions[currentStep].placeholder.toLowerCase()]
+                    }
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  />
+                )}
+
+                {questions[currentStep].type === "dropdown" && (
+                  <div className="space-y-4">
+                    {questions[currentStep].choices.map((choice, index) => (
+                      <div key={index} className="flex items-center space-x-3">
+                        <input
+                          type="radio"
+                          name={questions[currentStep].question}
+                          value={choice}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              [questions[currentStep].question]: e.target.value,
+                            })
+                          }
+                          className="w-5 h-5"
+                        />
+                        <label className="text-base">{choice}</label>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Navigation Buttons */}

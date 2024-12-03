@@ -21,68 +21,68 @@ function SignUp() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-r from-blue-700 via-red-700 to-purple-100 animate-gradient">
-      <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-blue-400 to-blue-300 flex items-center justify-center">
+      <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
         {/* Title */}
-        <h1 className="text-4xl font-bold text-center text-white mb-6">
-          LOG IN
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          Sign Up
         </h1>
 
         {/* Sign Up Form */}
-        <div className="w-4/5 sm:w-3/5 md:w-2/5 lg:w-1/3 bg-white p-6 rounded-lg shadow-md">
-          <form onSubmit={handleSignup}>
-            {/* Username Input */}
-            <div className="mb-6">
-              <label
-                htmlFor="signupUsername"
-                className="block text-lg font-medium mb-2 text-gray-700"
-              >
-                Username/Email:
-              </label>
-              <input
-                type="text"
-                id="signupUsername"
-                value={signupUsername}
-                onChange={(e) => setSignupUsername(e.target.value)}
-                required
-                className="w-full px-4 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your username/email"
-              />
-            </div>
-
-            {/* Password Input */}
-            <div className="mb-6">
-              <label
-                htmlFor="signupPassword"
-                className="block text-lg font-medium mb-2 text-gray-700"
-              >
-                Password:
-              </label>
-              <input
-                type="password"
-                id="signupPassword"
-                value={signupPassword}
-                onChange={(e) => setSignupPassword(e.target.value)}
-                required
-                className="w-full px-4 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your password"
-              />
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full py-3 bg-blue-500 text-white font-semibold rounded-full hover:bg-blue-600 transition duration-300"
+        <form onSubmit={handleSignup} className="space-y-6">
+          {/* Username Input */}
+          <div>
+            <label
+              htmlFor="signupUsername"
+              className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Sign Up
-            </button>
-          </form>
+              Username/Email
+            </label>
+            <input
+              type="text"
+              id="signupUsername"
+              value={signupUsername}
+              onChange={(e) => setSignupUsername(e.target.value)}
+              required
+              className="w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+              placeholder="Enter your username/email"
+            />
+          </div>
 
-          {/* Feedback Message */}
-          {message && (
-            <p className="mt-4 text-center text-gray-700">{message}</p>
-          )}
-        </div>
+          {/* Password Input */}
+          <div>
+            <label
+              htmlFor="signupPassword"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              id="signupPassword"
+              value={signupPassword}
+              onChange={(e) => setSignupPassword(e.target.value)}
+              required
+              className="w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+              placeholder="Enter your password"
+            />
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300"
+          >
+            Sign Up
+          </button>
+        </form>
+
+        {/* Feedback Message */}
+        {message && (
+          <p className="mt-4 text-center text-gray-700 font-medium">
+            {message}
+          </p>
+        )}
       </div>
     </div>
   );
