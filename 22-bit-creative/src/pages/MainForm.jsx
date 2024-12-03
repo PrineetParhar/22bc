@@ -205,13 +205,13 @@ function MainForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Organize responses in a "responses" object
     const responses = {};
     questions.forEach((question) => {
       responses[question.question] = formData[question.question];
     });
-
+  
     // Prepare the final payload
     const payload = {
       name: formData.name,
@@ -219,21 +219,21 @@ function MainForm() {
       email: formData.email,
       responses: responses, // Add all question responses here
     };
-
+  
     console.log("Payload being sent to the API:", payload);
-
+  
     try {
-      const response = await fetch("https://20b6-34-106-148-80.ngrok-free.app/submit-survey", {
+      const response = await fetch("https://e143-34-106-148-80.ngrok-free.app/submit-survey", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
-
+  
       console.log("Response status:", response.status);
       console.log("Response headers:", response.headers);
-
+  
       if (response.ok) {
         const data = await response.json();
         console.log("Server response:", data);
