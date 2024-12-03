@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 
 function MainForm() {
@@ -170,17 +169,30 @@ function MainForm() {
     },
   ];
 
-  const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-    email: "",
-  });
+    // Initialize formData dynamically for all questions
+  const [formData, setFormData] = useState(
+    questions.reduce(
+      (acc, question) => ({ ...acc, [question.question]: question.type === "checkbox" ? [] : "" }),
+      { name: "", age: "", email: "" } // Add these explicitly
+    )
+  );
 
   const totalSteps = questions.length;
   const progress = ((currentStep + 1) / totalSteps) * 100;
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+
+    if (type === "checkbox") {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: checked
+          ? [...(prev[name] || []), value]
+          : prev[name].filter((v) => v !== value),
+      }));
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleNext = () => {
@@ -191,18 +203,58 @@ function MainForm() {
     if (currentStep > 0) setCurrentStep(currentStep - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Form submitted!");
+
+    // Organize responses in a "responses" object
+    const responses = {};
+    questions.forEach((question) => {
+      responses[question.question] = formData[question.question];
+    });
+
+    // Prepare the final payload
+    const payload = {
+      name: formData.name,
+      age: formData.age,
+      email: formData.email,
+      responses: responses, // Add all question responses here
+    };
+
+    console.log("Payload being sent to the API:", payload);
+
+    try {
+      const response = await fetch("https://20b6-34-106-148-80.ngrok-free.app/submit-survey", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      console.log("Response status:", response.status);
+      console.log("Response headers:", response.headers);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Server response:", data);
+        alert(`Form submitted successfully! Server response: ${data.message}`);
+      } else {
+        const errorDetails = await response.text();
+        console.error("Error details from API:", errorDetails);
+        alert("Submission failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during form submission:", error);
+      alert("An error occurred. Please try again later.");
+    }
   };
 
   return (
     <>
+      <Navbar />
       <div className="relative min-h-screen bg-gradient-to-r from-blue-700 via-red-700 to-purple-100 animate-gradient">
         <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
-          <h2 className="text-2xl font-bold mb-4 text-center">
-            What do you want to generate?
-          </h2>
+          <h2 className="text-2xl font-bold mb-4 text-center">Survey Form</h2>
           <div className="w-3/5 p-6 bg-white shadow-md rounded-lg">
             {/* Progress Bar */}
             <div className="w-full h-2 bg-gray-200 rounded-full mb-6">
@@ -222,11 +274,9 @@ function MainForm() {
                 {questions[currentStep].type === "text" && (
                   <input
                     type="text"
-                    name={questions[currentStep].placeholder.toLowerCase()}
+                    name={questions[currentStep].question}
                     placeholder={questions[currentStep].placeholder}
-                    value={
-                      formData[questions[currentStep].placeholder.toLowerCase()]
-                    }
+                    value={formData[questions[currentStep].question]}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
@@ -234,25 +284,20 @@ function MainForm() {
                 )}
 
                 {questions[currentStep].type === "dropdown" && (
-                  <div className="space-y-4">
+                  <select
+                    name={questions[currentStep].question}
+                    value={formData[questions[currentStep].question]}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  >
+                    <option value="">Select an option</option>
                     {questions[currentStep].choices.map((choice, index) => (
-                      <div key={index} className="flex items-center space-x-3">
-                        <input
-                          type="radio"
-                          name={questions[currentStep].question}
-                          value={choice}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              [questions[currentStep].question]: e.target.value,
-                            })
-                          }
-                          className="w-5 h-5"
-                        />
-                        <label className="text-base">{choice}</label>
-                      </div>
+                      <option key={index} value={choice}>
+                        {choice}
+                      </option>
                     ))}
-                  </div>
+                  </select>
                 )}
               </div>
 
