@@ -4,169 +4,115 @@ import Navbar from "../components/Navbar";
 const questions = [
   {
     question:
-        "Please provide a brief description of the project. What product(s) are we capturing, and what are your expectations for the final deliverables?",
-      type: "text",
-      placeholder:
-        "Example: 'We’re launching a new skincare line (cleanser, serum, and moisturizer) and need high-quality visuals for our social media and website.'",
-    },
-    {
-      question:
-        "What is the main goal of this project? What do you want the audience to feel or do after seeing the content?",
-      type: "text",
-      placeholder:
-        "Example: 'We want to highlight the product's natural ingredients and eco-friendly packaging, and encourage our audience to engage and purchase.'",
-    },
-    {
-      question:
-        "Please describe the primary audience you want to reach with this campaign.",
-      type: "text",
-      placeholder:
-        "Example: 'Women, ages 25-40, eco-conscious, willing to invest in sustainable products.'",
-    },
-    {
-      question: "Please describe any secondary audience.",
-      type: "text",
-      placeholder:
-        "Example: 'Young professionals or skincare enthusiasts interested in natural products.'",
-    },
-    {
-      question:
-        "What are the most important messages you want to convey about this product or line?",
-      type: "text",
-      placeholder:
-        "Example: 'The products are organic, cruelty-free, and come in sustainable packaging. Perfect for all skin types.'",
-    },
-    {
-      question:
-        "Please describe the tone you want for the photography and videography.",
-      type: "dropdown",
-      placeholder: "",
-      choices: [
-        "Refreshing",
-        "Elegant",
-        "Natural",
-        "Minimalistic",
-        "Bold",
-        "Luxurious",
-        "Other",
-      ],
-    },
-    {
-      question: "Please describe the visual style.",
-      type: "dropdown",
-      placeholder: "",
-      choices: [
-        "Clean and simple (white background)",
-        "Lifestyle and organic (in-use shots)",
-        "Colorful and vibrant",
-        "Nature-inspired (earthy tones)",
-        "Other",
-      ],
-    },
-    {
-      question: "Shot Angles (for Photography)",
-      type: "dropdown",
-      placeholder: "",
-      choices: [
-        "Straight-on",
-        "45-degree angle",
-        "Overhead",
-        "Close-up/Macro",
-        "Other",
-      ],
-    },
-    {
-      question: "Lighting Style",
-      type: "dropdown",
-      placeholder: "",
-      choices: [
-        "Soft, natural light",
-        "Bright, high-key lighting",
-        "Dramatic, low-key lighting",
-        "Studio lighting",
-        "Other",
-      ],
-    },
-    {
-      question: "Photography",
-      type: "text",
-      placeholder:
-        "Example: 15 product shots (white background), 10 lifestyle shots (real-world settings).",
-    },
-    {
-      question: "Videography",
-      type: "text",
-      placeholder:
-        "Example: 3 short videos (15-30 seconds), 1 overview video (60 seconds).",
-    },
-    {
-      question: "Where will the content be used? Please select all that apply.",
-      type: "checkbox",
-      placeholder: "",
-      choices: [
-        "Instagram (Feed & Stories)",
-        "TikTok",
-        "Website",
-        "E-commerce/Online Store",
-        "Digital Ads",
-        "Other",
-      ],
-    },
-    {
-      question:
-        "Are there any brands or campaigns you would like to reference in terms of look, feel, or mood?",
-      type: "text",
-      placeholder: "Please provide links or upload images.",
-    },
-    {
-      question: "Concept Approval Date",
-      type: "dropdown",
-      placeholder: "",
-      choices: ["ASAP", "1-2 weeks", "3-4 weeks", "Other"],
-    },
-    {
-      question: "Shooting Dates",
-      type: "dropdown",
-      placeholder: "",
-      choices: ["Flexible", "Specific dates (please specify)"],
-    },
-    {
-      question: "First Draft Review",
-      type: "dropdown",
-      placeholder: "",
-      choices: ["1 week after shooting", "2 weeks after shooting", "Other"],
-    },
-    {
-      question: "Final Delivery",
-      type: "dropdown",
-      placeholder: "",
-      choices: [
-        "2 weeks after first draft",
-        "1 month after first draft",
-        "Other",
-      ],
-    },
-    {
-      question: "What is your estimated budget for this project?",
-      type: "dropdown",
-      placeholder: "",
-      choices: [
-        "Under $5,000",
-        "$5,000 - $10,000",
-        "$10,000 - $20,000",
-        "$20,000+",
-        "Other",
-      ],
-    },
-    {
-      question:
-        "Who will be the main point of contact, and are there other key decision-makers we should be aware of?",
-      type: "text",
-      placeholder: "Example: Emily Johnson, Marketing Director",
-    },
-  // Add other questions here as per your requirements...
+      "Please provide a brief description of the project. What product(s) are we capturing, and what are your expectations for the final deliverables?",
+    type: "text",
+    placeholder:
+      "Example: 'We’re launching a new skincare line (cleanser, serum, and moisturizer) and need high-quality visuals for our social media and website.'",
+  },
+  {
+    question:
+      "What is the main goal of this project? What do you want the audience to feel or do after seeing the content?",
+    type: "text",
+    placeholder:
+      "Example: 'We want to highlight the product's natural ingredients and eco-friendly packaging, and encourage our audience to engage and purchase.'",
+  },
+  {
+    question:
+      "Please describe the primary audience you want to reach with this campaign.",
+    type: "text",
+    placeholder:
+      "Example: 'Women, ages 25-40, eco-conscious, willing to invest in sustainable products.'",
+  },
+  {
+    question: "Please describe the tone you want for the photography and videography.",
+    type: "dropdown",
+    choices: [
+      "Refreshing",
+      "Elegant",
+      "Natural",
+      "Minimalistic",
+      "Bold",
+      "Luxurious",
+      "Other",
+    ],
+  },
+  {
+    question: "Lighting Style",
+    type: "dropdown",
+    choices: [
+      "Soft, natural light",
+      "Bright, high-key lighting",
+      "Dramatic, low-key lighting",
+      "Studio lighting",
+      "Other",
+    ],
+  },
+  {
+    question: "Photography",
+    type: "text",
+    placeholder:
+      "Example: 15 product shots (white background), 10 lifestyle shots (real-world settings).",
+  },
+  {
+    question:
+      "Are there any brands or campaigns you would like to reference in terms of look, feel, or mood?",
+    type: "text",
+    placeholder: "Please provide links or upload images.",
+  },
+  {
+    question: "Concept Approval Date",
+    type: "dropdown",
+    choices: ["ASAP", "1-2 weeks", "3-4 weeks", "Other"],
+  },
+  {
+    question: "Shooting Dates",
+    type: "dropdown",
+    choices: ["Flexible", "Specific dates (please specify)"],
+  },
+  {
+    question: "First Draft Review",
+    type: "dropdown",
+    choices: ["1 week after shooting", "2 weeks after shooting", "Other"],
+  },
+  {
+    question: "Final Delivery",
+    type: "dropdown",
+    choices: [
+      "2 weeks after first draft",
+      "1 month after first draft",
+      "Other",
+    ],
+  },
+  {
+    question: "What is your estimated budget for this project?",
+    type: "dropdown",
+    choices: [
+      "Under $5,000",
+      "$5,000 - $10,000",
+      "$10,000 - $20,000",
+      "$20,000+",
+      "Other",
+    ],
+  },
+  {
+    question:
+      "Who will be the main point of contact, and are there other key decision-makers we should be aware of?",
+    type: "text",
+    placeholder: "Example: Emily Johnson, Marketing Director",
+  },
+  {
+    question: "Where will the content be used? Please select all that apply.",
+    type: "checkbox",
+    choices: [
+      "Instagram (Feed & Stories)",
+      "TikTok",
+      "Website",
+      "E-commerce/Online Store",
+      "Digital Ads",
+      "Other",
+    ],
+  },
 ];
-
 
 function MainForm() {
   const [currentStep, setCurrentStep] = useState(0); // Track the current form step
@@ -177,11 +123,9 @@ function MainForm() {
         ...acc,
         [question.question]: question.type === "checkbox" ? [] : "",
       }),
-      { name: "", age: "", email: "" } // Explicitly include name, age, email
+      { name: "", age: "", email: "" } // Include name, age, and email explicitly
     )
   );
-
-
 
   const totalSteps = questions.length;
   const progress = ((currentStep + 1) / totalSteps) * 100;
@@ -303,6 +247,43 @@ function MainForm() {
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
+                )}
+
+                {questions[currentStep].type === "dropdown" && (
+                  <select
+                    name={questions[currentStep].question}
+                    value={formData[questions[currentStep].question]}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  >
+                    <option value="">Select an option</option>
+                    {questions[currentStep].choices.map((choice, index) => (
+                      <option key={index} value={choice}>
+                        {choice}
+                      </option>
+                    ))}
+                  </select>
+                )}
+
+                {questions[currentStep].type === "checkbox" && (
+                  <div>
+                    {questions[currentStep].choices.map((choice, index) => (
+                      <label key={index} className="block mb-2">
+                        <input
+                          type="checkbox"
+                          name={questions[currentStep].question}
+                          value={choice}
+                          checked={formData[questions[currentStep].question]?.includes(
+                            choice
+                          )}
+                          onChange={handleChange}
+                          className="mr-2"
+                        />
+                        {choice}
+                      </label>
+                    ))}
+                  </div>
                 )}
               </div>
 
