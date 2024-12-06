@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 
-function MainForm() {
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const questions = [
-    {
-      question:
+const questions = [
+  {
+    question:
         "Please provide a brief description of the project. What product(s) are we capturing, and what are your expectations for the final deliverables?",
       type: "text",
       placeholder:
@@ -167,15 +164,24 @@ function MainForm() {
       type: "text",
       placeholder: "Example: Emily Johnson, Marketing Director",
     },
-  ];
+  // Add other questions here as per your requirements...
+];
 
-    // Initialize formData dynamically for all questions
+
+function MainForm() {
+  const [currentStep, setCurrentStep] = useState(0); // Track the current form step
+  const [imageUrl, setImageUrl] = useState(null); // State to store the generated image URL
   const [formData, setFormData] = useState(
     questions.reduce(
-      (acc, question) => ({ ...acc, [question.question]: question.type === "checkbox" ? [] : "" }),
-      { name: "", age: "", email: "" } // Add these explicitly
+      (acc, question) => ({
+        ...acc,
+        [question.question]: question.type === "checkbox" ? [] : "",
+      }),
+      { name: "", age: "", email: "" } // Explicitly include name, age, email
     )
   );
+
+
 
   const totalSteps = questions.length;
   const progress = ((currentStep + 1) / totalSteps) * 100;
@@ -205,39 +211,43 @@ function MainForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Organize responses in a "responses" object
     const responses = {};
     questions.forEach((question) => {
       responses[question.question] = formData[question.question];
     });
-  
+
     // Prepare the final payload
     const payload = {
       name: formData.name,
       age: formData.age,
       email: formData.email,
-      responses: responses, // Add all question responses here
+      responses: responses,
     };
-  
+
     console.log("Payload being sent to the API:", payload);
-  
+
     try {
-      const response = await fetch("https://e143-34-106-148-80.ngrok-free.app/submit-survey", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-  
-      console.log("Response status:", response.status);
-      console.log("Response headers:", response.headers);
-  
+      const response = await fetch(
+        "https://436f-35-194-44-69.ngrok-free.app/submit-survey", // Replace with your ngrok URL
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
       if (response.ok) {
         const data = await response.json();
         console.log("Server response:", data);
-        alert(`Form submitted successfully! Server response: ${data.message}`);
+
+        // Update imageUrl state with the returned image URL
+        setImageUrl(data.image_url);
+
+        alert(`Form submitted successfully!`);
       } else {
         const errorDetails = await response.text();
         console.error("Error details from API:", errorDetails);
@@ -264,6 +274,18 @@ function MainForm() {
               ></div>
             </div>
 
+            {/* Display the image if imageUrl is set */}
+            {imageUrl && (
+              <div className="mb-6">
+                <h3 className="text-lg font-medium mb-2">Generated Image:</h3>
+                <img
+                  src={imageUrl}
+                  alt="Generated from survey data"
+                  className="max-w-full h-auto rounded-lg shadow-md"
+                />
+              </div>
+            )}
+
             <form onSubmit={handleSubmit}>
               {/* Form Step */}
               <div className="mb-6">
@@ -281,23 +303,6 @@ function MainForm() {
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
-                )}
-
-                {questions[currentStep].type === "dropdown" && (
-                  <select
-                    name={questions[currentStep].question}
-                    value={formData[questions[currentStep].question]}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required
-                  >
-                    <option value="">Select an option</option>
-                    {questions[currentStep].choices.map((choice, index) => (
-                      <option key={index} value={choice}>
-                        {choice}
-                      </option>
-                    ))}
-                  </select>
                 )}
               </div>
 
